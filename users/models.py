@@ -10,7 +10,6 @@ from django.db import models
 
 class User(AbstractBaseUser):
     # required for registeration
-    email = models.EmailField('注册邮箱', unique=True, db_index=True,
-                              validators=[validate_email])
+    email = models.EmailField('注册邮箱', unique=True, db_index=True)
     # for admin
-    is_staff = models.BooleanField(_('staff status'), default=False)
+    is_staff = models.BooleanField('staff status', default=False)

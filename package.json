@@ -1,0 +1,23 @@
+{
+  "name": "glamorgan-book-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "create-react-app": "^1.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PainterPuppets/GlamorganBookShop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PainterPuppets/GlamorganBookShop/issues"
+  },
+  "homepage": "https://github.com/PainterPuppets/GlamorganBookShop#readme"
+}

@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'book',
     'order',
-    'users'
+    'users',
+    'testing'
 ]
 
 MIDDLEWARE = [
@@ -75,7 +76,7 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.AllowAny',
     ],
     'PAGE_SIZE': 10
 }

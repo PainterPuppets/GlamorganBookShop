@@ -25,3 +25,26 @@ class BookApiTests(TestCase):
         response = self.client.get('/api/book/', format='json')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(json.loads(response.content)['results']), 1)
+
+    def test_create_book_api(self):
+        data = {
+            'name': 'test',
+            'price': '1',
+            'discount': '1',
+            'introduce': 'hhh',
+            'count': '1',
+            'author': '佚名'
+        }
+        
+        response = self.client.post('/api/book/', data, format='json')
+        self.assertEqual(response.status_code, 403)
+
+        response = self.user_client.post('/api/book/', data, format='json')
+        self.assertEqual(response.status_code, 403)
+
+        response = self.admin_client.post('/api/book/', data, format='json')
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get('/api/book/', format='json')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(json.loads(response.content)['results']), 1)

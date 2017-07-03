@@ -8,7 +8,7 @@ class Book(models.Model):
     # for user
     name = models.CharField(max_length=255, unique=True)
     price = models.IntegerField()
-    discount = models.IntegerField(default=0)
+    discount = models.IntegerField(default=1)
     introduce = models.TextField(blank=True)
     count = models.IntegerField(default=0)
     author = models.CharField(max_length=255)

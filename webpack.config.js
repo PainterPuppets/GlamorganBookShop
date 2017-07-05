@@ -1,10 +1,10 @@
 var path = require('path');
 var webpack = require('webpack');  //加载webpack依赖包
 module.exports = {
-    entry: ['webpack/hot/dev-server', path.resolve(__dirname, './javascripts/src/index.js')],  
+    entry: ['webpack/hot/dev-server', path.resolve(__dirname, './javascripts/src/main.js')],  
     //入口文件并添加了热加载
     output: {
-        path: path.resolve(__dirname, '../static/react'),
+        path: path.resolve(__dirname, './static/react'),
         filename: 'glamorgan.js'  //输出文件
     },
     module: {
@@ -33,3 +33,4 @@ module.exports = {
         extensions: ['.js', '.json', '.scss', '.ts']
     }
 };
+

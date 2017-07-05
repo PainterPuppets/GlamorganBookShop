@@ -1,15 +1,17 @@
 import React from 'react';
 import { Button } from 'antd';
 var ProductBox;
-ProductBox = React.createClass({
-    render: function () {
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
         return (
             <div className="productBox">
-                antd button
+                antd button!!!<br />
             <Button type="primary">Primary</Button>
             </div>
         );
     }
-});
-
-module.exports = ProductBox;
+}

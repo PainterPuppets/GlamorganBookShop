@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');  //加载webpack依赖包
 module.exports = {
-    entry: ['webpack/hot/dev-server', path.resolve(__dirname, './javascripts/src/main.js')],  
+    entry: path.resolve(__dirname, './javascripts/src/app.js'),  
     //入口文件并添加了热加载
     output: {
         path: path.resolve(__dirname, './static/react'),
@@ -25,12 +25,8 @@ module.exports = {
             //对图片进行打包
         ]
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ],
     resolve: {
         //自动扩展文件后缀名
         extensions: ['.js', '.json', '.scss', '.ts']
     }
 };
-

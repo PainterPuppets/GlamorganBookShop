@@ -1,10 +1,12 @@
-var React = require('react');
+import React from 'react';
+import { Button } from 'antd';
 var ProductBox;
 ProductBox = React.createClass({
     render: function () {
         return (
             <div className="productBox">
-                hello react&es2015&webpack!!!
+                antd button
+            <Button type="primary">Primary</Button>
             </div>
         );
     }

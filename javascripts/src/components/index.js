@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
-var ProductBox;
+import WebSiteLayout from './WebSiteLayout';
+
 export default class App extends React.Component {
     constructor(props) {
         super(props);
@@ -8,10 +9,7 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div className="productBox">
-                antd button!!!<br />
-            <Button type="primary">Primary</Button>
-            </div>
+            <WebSiteLayout />
         );
     }
 }

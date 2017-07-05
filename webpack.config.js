@@ -13,9 +13,14 @@ module.exports = {
                 test: /\.js?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
-                query: {
-                    presets: ['es2015', 'react']
-                } //将react编译成js文件
+                include: [
+                path.resolve(__dirname)
+                // path.resolve(__dirname, "app")
+                // APP_DIR
+                ],
+                // query: {
+                //     presets: ['es2015', 'react']
+                // } //将react编译成js文件
             },
             { test: /\.css$/, loader: 'style-loader!css-loader' }, 
             //打包css文件

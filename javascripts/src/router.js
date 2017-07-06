@@ -10,9 +10,8 @@ import HomepageContainer from './homepage/containers/HomepageContainer';
 export default () => {
   return (
     <BrowserRouter>
-        <Route path="/" component={HomepageLayout}>
-            <IndexRoute component={HomepageContainer} />
-        </Route>
+        <Route path="/" component={HomepageLayout} />
+        {/*<Route path="/book/:id" component={User}/>*/}
     </BrowserRouter>
   )
 }

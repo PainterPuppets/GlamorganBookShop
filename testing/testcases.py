@@ -18,7 +18,6 @@ class TestCase(DjangoTestCase):
     def setUp(self):
         self.email = 'noip_2008@yeah.net'
         self.user = self.createActivatedUser(self.email)
-        cache.clear()
 
     def get_password(self, username):
         return username + '2014'

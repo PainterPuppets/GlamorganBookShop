@@ -12,6 +12,7 @@ class Book(models.Model):
     introduce = models.TextField(blank=True)
     count = models.IntegerField(default=0)
     author = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='book/', blank=True, null=True)
 
     def __str__(self):
         return self.name

@@ -25,7 +25,6 @@ class OrderApiTests(TestCase):
 
         response = self.user_client.get('/api/order/', format='json')
         self.assertEqual(response.status_code, 200)
-        print json.loads(response.content)
 
     def test_create_order_api(self):
         book = self.createBook('他改变了中国')

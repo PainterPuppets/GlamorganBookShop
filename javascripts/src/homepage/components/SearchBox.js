@@ -9,7 +9,7 @@ class SearchBox extends React.Component {
 
     render() {
         return (
-            <div className='ant-input-affix-wrapper' style={{ width: 200 }}>
+            <div className={`${this.props.className} ant-input-affix-wrapper`} style={{ width: 200 }}>
                 <Input 
                     placeholder="input search book name" 
                     className='ant-input ant-input-search search' 

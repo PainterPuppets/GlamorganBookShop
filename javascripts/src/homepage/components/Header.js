@@ -15,7 +15,7 @@ class Header extends React.Component {
                 <div className='content'>
                     <img src='/static/logo.svg' className='logo'/>
                     <h3>Glamorgan Book Store</h3>
-                    <SearchBox />
+                    <SearchBox className='search'/>
                 </div>
             </div>
         )

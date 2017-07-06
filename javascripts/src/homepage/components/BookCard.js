@@ -18,7 +18,7 @@ class BookCard extends React.Component {
     render() {
         return (
             <a href="//item.jd.com/12197322.html">
-                <Card className='bookcard' bodyStyle={{ padding: 0 }}>
+                <Card className={`${this.props.className} bookcard`} bodyStyle={{ padding: 0 }}>
                     <div className="custom-image">
                         <img alt="example" width="100%" src={this.props.imageUrl} />
                     </div>

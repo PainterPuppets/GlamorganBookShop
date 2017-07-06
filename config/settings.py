@@ -95,6 +95,16 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': 'Glamorgan',
+#         'USER': 'sys',
+#         'PASSWORD': '123',
+#         'HOST': '123.206.125.123',
+#         'PORT': '1521'
+#     }
+# }
 
 
 # Password validation

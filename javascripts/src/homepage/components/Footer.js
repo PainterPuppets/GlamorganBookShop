@@ -22,7 +22,7 @@ class Footer extends React.Component {
                     </ul>
                     </div>
                     <div className="mdl-mega-footer--drop-down-section">
-                        <input className="mdl-mega-footer--heading-checkbox" type="checkbox" checked />
+                        <input className="mdl-mega-footer--heading-checkbox" type="checkbox" />
                         <h1 className="mdl-mega-footer--heading">配送方式</h1>
                         <ul className="mdl-mega-footer--link-list">
                             <li><a href="#">上门自提</a></li>

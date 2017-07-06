@@ -84,3 +84,19 @@ export const ArticleProvider = {
   },
 
 };
+
+export const BookProvider = {
+
+  get(url) {
+    return BaseProvider.get(url);
+  },
+
+  getList(query) {
+    let url = '/api/book/';
+    if (query) {
+      url = `${url}?${qs.stringify(query, { arrayFormat: 'repeat' })}`;
+    }
+
+    return BaseProvider.get(url);
+  },
+};

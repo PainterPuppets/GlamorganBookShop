@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from config.router import router
 from config.views import react
+from config import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -25,3 +27,5 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^material/', react),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -24,7 +24,7 @@ module.exports = {
             },
             { test: /\.css$/, loader: 'style-loader!css-loader' }, 
             //打包css文件
-            { test: /\.scss$/, loader: 'style!css!sass?sourceMap'}, 
+            { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader?sourceMap'}, 
             //编译sass文件
             { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'} 
             //对图片进行打包

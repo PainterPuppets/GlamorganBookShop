@@ -1,0 +1,27 @@
+@media screen and (max-width:767px) { 
+    .lay-header {
+        display: none;
+        .content{
+
+        }
+    }
+}
+@media screen and (min-width:768px) {
+    .lay-header {
+        background-color: #FFF9C4;
+        .content {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            display: flex;
+            min-height: 192px;
+            align-items: center;
+            justify-content:center;
+            width: 100%;
+            flex-direction: column;
+        }
+        .logo {
+            max-height: 86px;
+            max-width: 86px;
+        }
+    }
+}

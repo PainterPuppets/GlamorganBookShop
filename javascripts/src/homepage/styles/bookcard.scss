@@ -1,0 +1,26 @@
+.bookcard {
+    width: 240px;
+    text-align: center;
+    display: inline-block;
+}
+.bookcard:hover {
+    a {
+        color: #49a9ee;
+    }
+}
+
+.card-name {
+    color: #666;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.card-price {
+    font: 18px/20px arial;
+    color: #FF5252;
+    margin: 10px;
+}
+
+.custom-image {
+    margin: 20px;
+}

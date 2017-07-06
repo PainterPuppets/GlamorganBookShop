@@ -20,7 +20,8 @@ from config.views import react
 
 
 urlpatterns = [
+    url(r'^$', react),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    url(r'^$', react)
+    url(r'^material/', react),
 ]

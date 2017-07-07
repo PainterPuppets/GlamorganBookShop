@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^$', react),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    url(r'^material/', react),
+    url(r'^(?:.*)/?$', react),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

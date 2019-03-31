@@ -3,8 +3,11 @@ import { observer } from 'mobx-react';
 import { Layout, Menu, Breadcrumb, Card, Table } from 'antd';
 import BookStore from './stores/BookStore'
 import AuthStore from './stores/AuthStore'
+import BorrowStore from './stores/BorrowStore'
+
 import LMSHeader from './components/LMSHeader'
 import LMSBookTable from './components/LMSBookTable'
+import BorrowTable from './components/BorrowTable'
 import LoginModal from './components/LoginModal'
 import BookDetailModal from './components/BookDetailModal'
 
@@ -24,18 +27,28 @@ class LibraryMangeSystem extends React.Component {
 
   componentWillMount() {
     this.loadBook();
+    this.loadBorrow();
   }
 
   componentWillReceiveProps() {
     this.loadBook();
+    this.loadBorrow();
+  }
+
+  loadBorrow = () => {
+    console.log('loadBorrow')
+    if (!AuthStore.isAuthenticated) {
+      return;
+    }
+    BorrowStore.getRecord()
   }
 
   loadBook = () => {
+    console.log('loadBook')
     if (this.state.loading) {
       return;
     }
     this.setState({ loading: true });
-    this.forceUpdate();
 
     /*const param = {
       title: this.props.params.title
@@ -59,6 +72,7 @@ class LibraryMangeSystem extends React.Component {
             onLogout={() => AuthStore.logout()}
           />
           <Content style={{ padding: '0 50px', marginTop: 64 }}>
+            <BorrowTable className="lms-borrow-card"/>
             <Card className="lms-book-card">
               <LMSBookTable
                 onBorrow={() => { }}

@@ -22,9 +22,10 @@ class BorrowStore {
     this.borrowRecord = this.borrowRecord.concat(borrow);
   }
 
-  @action getRecord(query) {
+  @action getRecord = () => {
     return BaseProvider.get(`/api/borrow/`).then((res) => {
       this.borrowRecord = res.data;
+      this.initialize = true;
     })
   }
 

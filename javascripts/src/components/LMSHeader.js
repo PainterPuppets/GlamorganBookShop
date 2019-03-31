@@ -17,9 +17,6 @@ class LMSHeader extends React.Component {
   render() {
     const renderUserBox = (
       <div className="userbox">
-        <div onClick={this.props.onReturn} className="userbox-item">
-          还书
-        </div>
         <div onClick={this.props.onLogout} className="userbox-item">
           登出
         </div>

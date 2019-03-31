@@ -29,6 +29,7 @@ class BookStore {
   @action getList(query) {
     return BaseProvider.get(`/api/book/?${qs.stringify(query, { arrayFormat: 'repeat' })}`).then((res) => {
       this.books = res.data.results;
+      this.initialize = true;
     })
   }
 

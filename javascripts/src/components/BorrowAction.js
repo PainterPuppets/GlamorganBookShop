@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { message, Button } from 'antd';
 import { observer } from 'mobx-react';
+import AuthStore from '../stores/AuthStore'
 import BorrowStore from '../stores/BorrowStore'
 
 
@@ -11,6 +12,10 @@ class BorrowAction extends React.Component {
   }
 
   handleBorrow = () => {
+    if (!AuthStore.isAuthenticated) {
+      message.error('请登录后再借阅')
+      AuthStore.openLoginModal();
+    }
     const canBorrow = this.props.book.current_count > 0; 
     if (!canBorrow) {
       message.error('已无更多藏书')

@@ -17,7 +17,7 @@ class LMSBookTable extends React.Component {
     console.log(BookStore.books)
 
     return (
-      <Table dataSource={BookStore.books} loading={BookStore.isReady}>
+      <Table dataSource={BookStore.books} loading={!BookStore.isReady}>
         <Column
           title="书名"
           dataIndex="name"

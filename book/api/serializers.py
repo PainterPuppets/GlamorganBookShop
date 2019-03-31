@@ -3,6 +3,12 @@ from rest_framework import serializers
 from book.models import Book
 
 
+class BookMiniSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ('id', 'name', 'count', 'current_count')
+
+
 class BookSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField(read_only=True)
 
@@ -11,4 +17,4 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ('id', 'name', 'introduce', 'count', 'current_count', 'author', 'image')
+        fields = ('id', 'name', 'introduce', 'count', 'introduce', 'current_count', 'author', 'image')

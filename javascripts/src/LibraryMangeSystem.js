@@ -6,6 +6,7 @@ import AuthStore from './stores/AuthStore'
 import LMSHeader from './components/LMSHeader'
 import LMSBookTable from './components/LMSBookTable'
 import LoginModal from './components/LoginModal'
+import BookDetailModal from './components/BookDetailModal'
 
 import './layout.scss'
 
@@ -51,19 +52,23 @@ class LibraryMangeSystem extends React.Component {
   render() {
     return (
       <React.Fragment>
-      <Layout className="lms-layout">
-        <LMSHeader 
-          onReturn={() => {}}
-          onLogin={() => AuthStore.openLoginModal()}
-          onLogout={() => AuthStore.logout()}
-        />
-        <Content style={{ padding: '0 50px', marginTop: 64 }}>
-          <Card className="lms-book-card">
-            <LMSBookTable onBorrow={() => {}}/>
-          </Card>
-        </Content>
-      </Layout>
-      <LoginModal />
+        <Layout className="lms-layout">
+          <LMSHeader
+            onReturn={() => { }}
+            onLogin={() => AuthStore.openLoginModal()}
+            onLogout={() => AuthStore.logout()}
+          />
+          <Content style={{ padding: '0 50px', marginTop: 64 }}>
+            <Card className="lms-book-card">
+              <LMSBookTable
+                onBorrow={() => { }}
+                onDetail={(id) => BookStore.openDetailModal(id)}
+              />
+            </Card>
+          </Content>
+        </Layout>
+        <LoginModal />
+        <BookDetailModal />
       </React.Fragment>
     )
   }

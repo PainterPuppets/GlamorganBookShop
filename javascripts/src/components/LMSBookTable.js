@@ -3,6 +3,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Table } from 'antd';
 import BookStore from '../stores/BookStore'
+import BorrowAction from './BorrowAction';
 
 const { Column, ColumnGroup } = Table;
 
@@ -14,13 +15,16 @@ class LMSBookTable extends React.Component {
 
   render() {
     console.log(BookStore.books)
-  
+
     return (
       <Table dataSource={BookStore.books} loading={BookStore.isReady}>
         <Column
           title="书名"
           dataIndex="name"
           key="name"
+          render={(text, book) => (
+            <span className="clickable-text" onClick={() => this.props.onDetail(book.id)}>{text}</span>
+          )}
         />
         <Column
           title="作者"
@@ -40,9 +44,7 @@ class LMSBookTable extends React.Component {
         <Column
           title="操作"
           key="action"
-          render={(text, record) => (
-            <span className="clickable-text" onClick={this.props.onBorrow}>借阅</span>
-          )}
+          render={book => <BorrowAction book={book} />}
         />
       </Table>
     )

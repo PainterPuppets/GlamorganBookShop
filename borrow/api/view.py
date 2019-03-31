@@ -34,11 +34,11 @@ class BorrowViewSet(viewsets.ModelViewSet):
             return Response({'detail': u'书已经被借光了，看看其他书吧'}, status=status.HTTP_404_NOT_FOUND)
         book.current_count -= 1
         book.save()
-        Borrow.create(
+        borrow = Borrow.objects.create(
             user=user,
             book=book,
         )
-        return Response(BorrowSerializer(book).data, status=status.HTTP_200_OK)
+        return Response(BorrowSerializer(borrow).data, status=status.HTTP_200_OK)
 
     @detail_route(methods=['POST'])
     def return_book(self, request):

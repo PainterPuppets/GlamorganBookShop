@@ -6,9 +6,24 @@ class BookStore {
   @observable initialize = false;
   @observable loading = false;
   @observable books = [];
+  @observable detailId = 0;
+  @observable detailModalVisible = false;
 
   @computed get isReady() {
     return this.initialize && !this.loading
+  }
+
+  @computed get bookDetail() {
+    if (this.detailId === 0) {
+      return null;
+    }
+
+    const index = this.books.findIndex(b => b.id === this.detailId)
+    if (index === -1) {
+      return null;
+    }
+
+    return this.books[index]
   }
 
   @action getList(query) {
@@ -17,6 +32,14 @@ class BookStore {
     })
   }
 
+  @action openDetailModal = (bookId) => {
+    this.detailId = bookId;
+    this.detailModalVisible = true;
+  }
+
+  @action closeDetailModal = () => {
+    this.detailModalVisible = false;
+  }
 }
 
 

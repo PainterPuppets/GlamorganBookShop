@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import { observer } from 'mobx-react';
 
 @observer
-class BorrowModal extends React.Component {
+class GiveBackModal extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -16,4 +16,4 @@ class BorrowModal extends React.Component {
   }
 }
 
-export default BorrowModal;
+export default GiveBackModal;

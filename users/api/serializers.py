@@ -2,6 +2,14 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
 
+class UserMiniSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'username',
+        )
+
 class UserSerializerForMe(serializers.ModelSerializer):
     class Meta:
         model = User

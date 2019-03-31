@@ -16,4 +16,11 @@
   &:hover {
     color: #40a9ff;
   } 
+  &.disabled {
+    cursor: not-allowed;
+    color: grey;
+    &:hover {
+      color: grey;
+    }
+  }
 }

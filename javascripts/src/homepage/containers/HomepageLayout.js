@@ -1,18 +1,17 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BookCard from '../components/BookCard';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import '../styles/homepage.scss'
 import BookStore from '../../stores/BookStore';
-import BaseProvider from '../../utils/Provider';
+import '../styles/homepage.scss'
 
+@observer
 class HomepageLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       minHeight: document.body.clientHeight,
-      books: [],
       loading: false,
     }
   }
@@ -26,7 +25,6 @@ class HomepageLayout extends React.Component {
   }
 
   loadBook = () => {
-    console.log('运行了');
     if (this.state.loading) {
       return;
     }
@@ -37,17 +35,16 @@ class HomepageLayout extends React.Component {
       title: this.props.params.title
     };*/
     // const url = `/api/article/preview/?title=${encodeURIComponent(this.props.params.title)}`;
-    BookStore.getList().then(({ data }) => {
-      console.log(data);
+    BookStore.getList().finally(() => {
       this.setState({
-        loading: false,
-        books: data.results
+        loading: false
       });
     });
   };
 
 
   render() {
+    console.log(BookStore.books)
     if (this.state.loading) {
       return (
         <div className="text-center p-t-100">
@@ -60,7 +57,7 @@ class HomepageLayout extends React.Component {
         <Header style={{ marginBottom: '40px' }} />
         <div className="mdl-layout__content" style={{ minHeight: this.state.minHeight }}>
           <div className='container booklist'>
-            {this.state.books.map(book => (
+            {BookStore.books.map(book => (
               <BookCard className='book-item' imageUrl={book.image} name={book.name} price={book.price} key={book.id} />
             ))}
           </div>

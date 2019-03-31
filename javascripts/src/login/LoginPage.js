@@ -1,9 +1,13 @@
 import React from 'React';
 import { message } from 'antd';
+import { observer } from 'mobx-react';
+import { withRouter } from "react-router";
 import LoginForm from './compinents/LoginForm'
 import AuthStore from '../stores/AuthStore'
 import './LoginPage.scss'
 
+@withRouter
+@observer
 class LoginPage extends React.Component {
   handleLogin = (username, password) => {
     AuthStore.login(username, password).then(() => {
@@ -15,6 +19,9 @@ class LoginPage extends React.Component {
   }
 
   render() {
+    if (AuthStore.isAuthenticated) {
+      this.props.history.push(`/`);
+    }
     return (
       <div className="login-page">
         <div className='login-logo'>

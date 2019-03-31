@@ -3,6 +3,15 @@ import _ from 'lodash';
 import BaseProvider from '../utils/Provider';
 
 class AuthStore {
+  constructor() {
+    const initialStore = window.__INITIAL_AUTH_STORE__ || {};
+    if (Object.keys(initialStore).length === 0) {
+      this.getUser();
+
+      return;
+    }
+    this.update(initialStore.detail || {});
+  }
 
   @observable id = 0;
   @observable loading = false;

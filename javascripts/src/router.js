@@ -9,10 +9,10 @@ import BookDetailContainer from './homepage/containers/BookDetailContainer';
 export default () => {
   return (
     <BrowserRouter>
-        <Route path="/"component={HomepageLayout} />
-          {/*<IndexRoute />*/}
-          {/*<Route path="/book/:id" component={BookDetailContainer} />*/}
-        {/*</Route>*/}
+      <Route path="/" component={HomepageLayout} />
+      {/*<IndexRoute />*/}
+      {/*<Route path="/book/:id" component={BookDetailContainer} />*/}
+      {/*</Route>*/}
     </BrowserRouter>
   )
 }

@@ -23,7 +23,6 @@ static/react/*
 static/images/*
 templates/pages/base.html
 celerybeat-schedule.*
-/.vscode
 
 javascripts/package.json
 

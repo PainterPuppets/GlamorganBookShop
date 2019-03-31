@@ -20,6 +20,7 @@ class AuthStore {
   @observable isSuperuser = false;
   @observable username = '';
 
+  @observable loginModalVisible = false;
 
   @computed get json() {
     return JSON.stringify(this);
@@ -66,6 +67,14 @@ class AuthStore {
     return BaseProvider.post('/api/users/logout/').then(() => {
       this.reset();
     });
+  }
+
+  @action openLoginModal = () => {
+    this.loginModalVisible = true;
+  }
+
+  @action closeLoginModal = () => {
+    this.loginModalVisible = false;
   }
 
   @action getUser() {

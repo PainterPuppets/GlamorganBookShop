@@ -2,8 +2,11 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Layout, Menu, Breadcrumb, Card, Table } from 'antd';
 import BookStore from './stores/BookStore'
+import AuthStore from './stores/AuthStore'
 import LMSHeader from './components/LMSHeader'
 import LMSBookTable from './components/LMSBookTable'
+import LoginModal from './components/LoginModal'
+
 import './layout.scss'
 
 const { Content, Footer } = Layout;
@@ -47,14 +50,21 @@ class LibraryMangeSystem extends React.Component {
 
   render() {
     return (
+      <React.Fragment>
       <Layout className="lms-layout">
-        <LMSHeader/>
+        <LMSHeader 
+          onReturn={() => {}}
+          onLogin={() => AuthStore.openLoginModal()}
+          onLogout={() => AuthStore.logout()}
+        />
         <Content style={{ padding: '0 50px', marginTop: 64 }}>
           <Card className="lms-book-card">
             <LMSBookTable onBorrow={() => {}}/>
           </Card>
         </Content>
       </Layout>
+      <LoginModal />
+      </React.Fragment>
     )
   }
 }

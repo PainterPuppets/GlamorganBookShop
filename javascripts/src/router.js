@@ -12,11 +12,11 @@ export default () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/login" component={LoginPage} />
-        <Route path="/" component={HomepageLayout} />
-        {/*<IndexRoute />*/}
-        {/*<Route path="/book/:id" component={BookDetailContainer} />*/}
-        {/*</Route>*/}
 
+        <Route exact path="/profile" component={LoginPage} />
+        <Route exact path="/book" component={LoginPage} />
+
+        <Route path="/" component={HomepageLayout} />
       </Switch>
     </BrowserRouter>
   )

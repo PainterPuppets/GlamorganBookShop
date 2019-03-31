@@ -4,6 +4,7 @@ import { Layout, Menu, Breadcrumb, Card, Table } from 'antd';
 import BookStore from './stores/BookStore'
 import LMSHeader from './components/LMSHeader'
 import LMSBookTable from './components/LMSBookTable'
+import './layout.scss'
 
 const { Content, Footer } = Layout;
 
@@ -46,10 +47,12 @@ class LibraryMangeSystem extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Layout className="lms-layout">
         <LMSHeader/>
         <Content style={{ padding: '0 50px', marginTop: 64 }}>
-          <LMSBookTable/>
+          <Card className="lms-book-card">
+            <LMSBookTable onBorrow={() => {}}/>
+          </Card>
         </Content>
       </Layout>
     )

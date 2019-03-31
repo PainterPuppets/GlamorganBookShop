@@ -1,8 +1,12 @@
 import React, { PropTypes } from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Typography } from 'antd';
 import { observer } from 'mobx-react';
 import AuthStore from '../stores/AuthStore'
 const { Header, Content, Footer } = Layout;
+const { Title } = Typography;
+
+
+import './header.scss'
 
 @observer
 class LMSHeader extends React.Component {
@@ -12,11 +16,12 @@ class LMSHeader extends React.Component {
 
   render() {
     return (
-      <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-        <div className="header-title">
+      <Header className={`${this.props.className} lms-header`} style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+        <h3 className="header-title">
           图书管理系统
-        </div>
-        <div className="header-profile">
+        </h3>
+        <div className="header-profile clickable-text">
+          {AuthStore.username}
         </div>
       </Header>
     )

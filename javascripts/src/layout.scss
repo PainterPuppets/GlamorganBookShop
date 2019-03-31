@@ -1,0 +1,20 @@
+@import '~antd/dist/antd.css';
+
+.lms-layout {
+  height: 100%;
+}
+
+.lms-book-card {
+  margin: 20px 0px;
+}
+
+.clickable-text {
+  cursor: pointer;
+  user-select: none;
+  color: #1890ff;
+  transition: all .2s;
+  &:hover {
+    color: #40a9ff;
+    text-decoration: underline;
+  } 
+}

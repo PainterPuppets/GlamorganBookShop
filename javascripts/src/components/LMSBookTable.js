@@ -17,16 +17,33 @@ class LMSBookTable extends React.Component {
   
     return (
       <Table dataSource={BookStore.books} loading={BookStore.isReady}>
-        {/* <Column
-          title="Age"
-          dataIndex="age"
-          key="age"
+        <Column
+          title="书名"
+          dataIndex="name"
+          key="name"
         />
         <Column
-          title="Address"
-          dataIndex="address"
-          key="address"
-        /> */}
+          title="作者"
+          dataIndex="author"
+          key="author"
+        />
+        <Column
+          title="数量"
+          dataIndex="count"
+          key="count"
+        />
+        <Column
+          title="剩余数量"
+          dataIndex="current_count"
+          key="current_count"
+        />
+        <Column
+          title="操作"
+          key="action"
+          render={(text, record) => (
+            <span className="clickable-text" onClick={this.props.onBorrow}>借阅</span>
+          )}
+        />
       </Table>
     )
   }

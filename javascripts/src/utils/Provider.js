@@ -1,18 +1,38 @@
 import qs from 'qs';
 import axios from 'axios';
-import { computed } from 'mobx';
-import AuthStore from '../stores/AuthStore';
+import csrf from './csrf';
 
-const BaseProvider = {
+class BaseProvider {
+  constructor() {
+    this.CSRFToken = csrf.getCSRFToken();
+  }
 
-  @computed get provider() {
+  get provider() {
     return axios.create({
       withCredentials: true,
       headers: {
-        "X-CSRFToken": AuthStore.CSRFToken,
+        "X-CSRFToken": this.CSRFToken,
       },
     });
-  },
+  }
+
+  refreshCSRFToken = () => {
+    this.CSRFToken = csrf.getCSRFToken();
+
+    return;
+  };
+
+  sendDataByBeacon = (url, data = null) => {
+    /*
+     * 1.When you want to use this method, turn off API's CSRF check and ensure user safety
+     * 2.The type of param data must be ArrayBufferView, Blob, DOMString, or FormData, or null
+     */
+    navigator.sendBeacon(url, data);
+  };
+
+  setCSRFToken = (token) => {
+    this.CSRFToken = token;
+  }
 
   getInstance() {
     // for compatibility
@@ -26,77 +46,39 @@ const BaseProvider = {
     }
 
     return this.provider;
-  },
+  }
 
   request(...args) {
     return this.provider.request(...args);
-  },
+  }
 
   get(...args) {
     return this.provider.get(...args);
-  },
+  }
 
   post(...args) {
     return this.provider.post(...args);
-  },
+  }
 
   put(...args) {
     return this.provider.put(...args);
-  },
+  }
 
   patch(...args) {
     return this.provider.patch(...args);
-  },
+  }
 
   delete(...args) {
     return this.provider.delete(...args);
-  },
+  }
 
   options(...args) {
     return this.provider.options(...args);
-  },
+  }
 
   head(...args) {
     return this.provider.head(...args);
-  },
+  }
+}
 
-};
-
-export default BaseProvider;
-
-export const ArticleProvider = {
-
-  get(url) {
-    return BaseProvider.get(url);
-  },
-
-  getList(query) {
-    let url = '/api/article/';
-    if (query) {
-      url = `${url}?${qs.stringify(query, { arrayFormat: 'repeat' })}`;
-    }
-
-    return BaseProvider.get(url);
-  },
-
-  like(id, cancel = false) {
-    return BaseProvider.post(`/api/article/${id}/like/`, { cancel });
-  },
-
-};
-
-export const BookProvider = {
-
-  get(url) {
-    return BaseProvider.get(url);
-  },
-
-  getList(query) {
-    let url = '/api/book/';
-    if (query) {
-      url = `${url}?${qs.stringify(query, { arrayFormat: 'repeat' })}`;
-    }
-
-    return BaseProvider.get(url);
-  },
-};
+export default new BaseProvider();

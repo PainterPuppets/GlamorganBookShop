@@ -1,13 +1,13 @@
 # coding: utf-8
 from django.contrib.auth.models import User, Group
-from django.contrib.auth import login as django_login, authenticate
+from django.contrib.auth import login as django_login, authenticate, logout as django_logout
 
 from rest_framework.decorators import api_view, permission_classes, list_route
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
-from users.api.serializers import UserSerializer, GroupSerializer, LoginSerializer
+from users.api.serializers import UserSerializer, GroupSerializer, LoginSerializer, UserSerializerForMe
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -17,13 +17,20 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
+    def list(self, request):
+        if not request.user.is_authenticated():
+            return Response({u'detail': u'请登录后再试' }, status.HTTP_403_FORBIDDEN)
+
+        return Response(UserSerializerForMe(request.user).data, status=status.HTTP_200_OK)
+
+
     @list_route(methods=['POST'])
     def login(self, request):
         '''
         handle user's login when POST to /api/accounts/login/
         '''
         if request.user.is_authenticated():
-            return Response({u'success': True})
+            return Response(UserSerializerForMe(request.user).data, status=status.HTTP_200_OK)
         serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         username = serializer.validated_data['username']
@@ -38,7 +45,16 @@ class UserViewSet(viewsets.ModelViewSet):
         django_login(request, user)
         request.session.set_expiry(60 * 60 * 24 * 60)
 
-        return Response({u'success': True})
+        return Response(UserSerializerForMe(request.user).data, status=status.HTTP_200_OK)
+
+
+    @list_route(methods=['POST'], permission_classes=[IsAuthenticated])
+    def logout(self, request):
+        '''
+        handle user's logout when POST to /api/accounts/logout/
+        '''
+        django_logout(request)
+        return Response(status=status.HTTP_200_OK)
 
 
 class GroupViewSet(viewsets.ModelViewSet):

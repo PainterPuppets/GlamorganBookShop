@@ -4,7 +4,8 @@ import Footer from '../components/Footer';
 import BookCard from '../components/BookCard';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import '../styles/homepage.scss'
-import BaseProvider, { BookProvider } from '../../utils/Provider';
+import BookStore from '../../stores/BookStore';
+import BaseProvider from '../../utils/Provider';
 
 class BookDetailContainer extends React.Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class BookDetailContainer extends React.Component {
     title: this.props.params.title
     };*/
     // const url = `/api/article/preview/?title=${encodeURIComponent(this.props.params.title)}`;
-    BookProvider.getList().then(({ data }) => {
+    BookStore.getList().then(({ data }) => {
       console.log(data);
       this.setState({
         loading: false,

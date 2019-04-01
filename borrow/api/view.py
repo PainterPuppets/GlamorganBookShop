@@ -2,7 +2,7 @@
 from django.contrib.auth.models import User, Group
 
 from rest_framework.decorators import api_view, permission_classes, detail_route
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
@@ -16,12 +16,13 @@ import datetime
 class BorrowViewSet(viewsets.ModelViewSet):
     queryset = Borrow.objects.all()
     serializer_class = BorrowSerializer
+    permission_classes = [IsAuthenticated]
 
     def list(self, request):
-        user = request.user
-        queryset = queryset.filter(user=user)
+        queryset = self.get_queryset().filter(user=request.user)
+        print queryset
 
-        return Response(BorrowSerializer(user).data, status=status.HTTP_200_OK)
+        return Response(BorrowSerializer(queryset, many=True).data, status=status.HTTP_200_OK)
 
     
     def create(self, request):
@@ -41,7 +42,7 @@ class BorrowViewSet(viewsets.ModelViewSet):
         return Response(BorrowSerializer(borrow).data, status=status.HTTP_200_OK)
 
     @detail_route(methods=['POST'])
-    def return_book(self, request):
+    def giveup(self, request):
         borrow = self.get_object()
         borrow.statue = BorrowStatus.RETURNED
         borrow.return_at = datetime.now()

@@ -13,7 +13,7 @@ class BookSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField(read_only=True)
 
     def get_image(self, obj):
-        return obj.image_url if obj.image_url else obj.image.url
+        return obj.image_url if obj.image_url else obj.image.url if obj.image else ''
 
     class Meta:
         model = Book

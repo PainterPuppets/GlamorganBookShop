@@ -1,4 +1,5 @@
 import React from 'react';
+import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
 import { Layout, Menu, Breadcrumb, Card, Table } from 'antd';
 import BookStore from './stores/BookStore'
@@ -23,6 +24,9 @@ class LibraryMangeSystem extends React.Component {
       minHeight: document.body.clientHeight,
       loading: false,
     }
+    reaction(() => AuthStore.isAuthenticated, () => {
+      this.loadBorrow()
+    })
   }
 
   componentWillMount() {

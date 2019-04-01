@@ -5,7 +5,6 @@ import { Table, Collapse, message } from 'antd';
 import BookStore from '../stores/BookStore'
 import BorrowStore from '../stores/BorrowStore'
 import AuthStore from '../stores/AuthStore'
-import BorrowAction from './BorrowAction';
 
 const { Column, ColumnGroup } = Table;
 const Panel = Collapse.Panel;
@@ -33,8 +32,8 @@ class BorrowTable extends React.Component {
 
     return (
       <Collapse className={this.props.className}>
-        <Panel header={`您一共借阅了${BorrowStore.borrowRecord.length}本书，展开查看更多`}>
-          <Table dataSource={BorrowStore.borrowRecord} loading={!BorrowStore.isReady}>
+        <Panel header={`您一共借阅了 ${BorrowStore.borrowRecord.length} 本书，展开查看更多`}>
+          <Table dataSource={BorrowStore.borrowRecord} loading={!BorrowStore.isReady} pagination={false}>
             <Column
               title="书名"
               key="name"
@@ -43,9 +42,16 @@ class BorrowTable extends React.Component {
               )}
             />
             <Column
+              title="借阅时间"
+              key="create_at"
+              render={(record) => (
+                <span>{new Date(record.create_at).toLocaleString()}</span>
+              )}
+            />
+            <Column
               title="操作"
               key="action"
-              render={record => (<span>归还</span>)}
+              render={record => (<span className="clickable-text">归还</span>)}
             />
           </Table>
         </Panel>

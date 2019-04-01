@@ -37,8 +37,8 @@ class BorrowStore {
   })
 }
 
-@action returnBook = (bookId) => {
-  return BaseProvider.post(`/api/borrow/return_book`, {
+@action giveUpBook = (bookId) => {
+  return BaseProvider.post(`/api/borrow/giveup`, {
     book_id: bookId
   }).then((res) => {
     this.updateData(res.data)

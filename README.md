@@ -30,7 +30,3 @@
  - `pip install -r requirements.txt` // install backend dependencies
  - `python manger.py runserver 127.0.0.1:8000` // satrt server
  - congratulation! you can access 127.0.0.1:8000 
-
-## TODO:
- - add pagination
- - romove duplicate code

@@ -1,12 +1,10 @@
-import React, { PropTypes } from 'react';
-import { Layout, Menu, Typography, Popover, Select } from 'antd';
+import React from 'react';
+import { Layout, Popover } from 'antd';
 import { observer } from 'mobx-react';
 import AuthStore from '../stores/AuthStore'
-const { Header, Content, Footer } = Layout;
-const { Title } = Typography;
-const { Option } = Select;
+const { Header } = Layout;
 
-import './header.scss'
+import './styles.scss'
 
 @observer
 class LMSHeader extends React.Component {

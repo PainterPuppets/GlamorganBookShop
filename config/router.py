@@ -10,6 +10,5 @@ router = routers.DefaultRouter()
 
 router.register(r'book', BookViewSet)
 router.register(r'groups', GroupViewSet)
-router.register(r'order', OrderViewSet)
 router.register(r'borrow', BorrowViewSet)
 router.register(r'users', UserViewSet)

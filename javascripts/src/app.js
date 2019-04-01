@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from './router';
+import LibraryMangeSystem from './LibraryMangeSystem';
 import 'antd/dist/antd.css';
 
-ReactDOM.render((<Router />), document.getElementById('content'));
+ReactDOM.render((<LibraryMangeSystem />), document.getElementById('content'));

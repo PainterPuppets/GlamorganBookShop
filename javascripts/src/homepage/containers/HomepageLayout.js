@@ -44,7 +44,6 @@ class HomepageLayout extends React.Component {
 
 
   render() {
-    console.log(BookStore.books)
     if (this.state.loading) {
       return (
         <div className="text-center p-t-100">

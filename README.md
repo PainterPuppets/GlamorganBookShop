@@ -32,5 +32,5 @@
  - congratulation! you can access 127.0.0.1:8000 
 
 ## TODO:
- - add search
+ - add pagination
  - romove duplicate code

@@ -5,7 +5,7 @@ import { Table } from 'antd';
 import BookStore from '../stores/BookStore'
 import BorrowAction from './BorrowAction';
 
-const { Column, ColumnGroup } = Table;
+const { Column } = Table;
 
 @observer
 class LMSBookTable extends React.Component {
@@ -14,10 +14,13 @@ class LMSBookTable extends React.Component {
   }
 
   render() {
-    console.log(BookStore.books)
-
     return (
-      <Table dataSource={BookStore.books} loading={!BookStore.isReady}>
+      <Table
+        dataSource={BookStore.books}
+        loading={!BookStore.isReady}
+        pagination={false}
+        rowKey={record => record.id}
+      >
         <Column
           title="书名"
           dataIndex="name"

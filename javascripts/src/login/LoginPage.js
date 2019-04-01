@@ -13,7 +13,6 @@ class LoginPage extends React.Component {
     AuthStore.login(username, password).then(() => {
       message.success('登录成功')
     }).catch((err) => {
-      console.log(err)
       message.error(err.response.data.detail)
     })
   }

@@ -15,7 +15,6 @@ class LoginModal extends React.Component {
       message.success('登录成功')
       AuthStore.closeLoginModal();
     }).catch((err) => {
-      console.log(err)
       message.error(err.response.data.detail)
     })
   }

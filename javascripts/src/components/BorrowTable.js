@@ -29,7 +29,7 @@ class BorrowTable extends React.Component {
       return null;
     }
     return (
-      <span onClick={() => this.onGiveBack(record.id)} className="clickable-text">
+      <span onClick={() => this.onGiveBack(borrow.id)} className="clickable-text">
         归还
       </span>
     )
@@ -54,7 +54,12 @@ class BorrowTable extends React.Component {
     return (
       <Collapse className={this.props.className}>
         <Panel header={`您当前一共借阅了 ${BorrowStore.borrowingRecord.length} 本书，展开查看更多`}>
-          <Table dataSource={BorrowStore.borrowRecord} loading={!BorrowStore.isReady} pagination={false}>
+          <Table
+            dataSource={BorrowStore.borrowRecord}
+            loading={!BorrowStore.isReady}
+            pagination={false}
+            rowKey={record => record.id}
+          >
             <Column
               title="书名"
               key="name"

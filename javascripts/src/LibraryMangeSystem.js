@@ -1,7 +1,7 @@
 import React from 'react';
 import { reaction } from 'mobx';
 import { observer } from 'mobx-react';
-import { Layout, Menu, Breadcrumb, Card, Table } from 'antd';
+import { Layout, Input, Card, Button } from 'antd';
 import BookStore from './stores/BookStore'
 import AuthStore from './stores/AuthStore'
 import BorrowStore from './stores/BorrowStore'
@@ -14,7 +14,8 @@ import BookDetailModal from './components/BookDetailModal'
 
 import './layout.scss'
 
-const { Content, Footer } = Layout;
+const Search = Input.Search;
+const { Content } = Layout;
 
 @observer
 class LibraryMangeSystem extends React.Component {
@@ -40,15 +41,13 @@ class LibraryMangeSystem extends React.Component {
   }
 
   loadBorrow = () => {
-    console.log('loadBorrow')
     if (!AuthStore.isAuthenticated) {
       return;
     }
     BorrowStore.getRecord()
   }
 
-  loadBook = () => {
-    console.log('loadBook')
+  loadBook = (param = {}) => {
     if (this.state.loading) {
       return;
     }
@@ -58,12 +57,19 @@ class LibraryMangeSystem extends React.Component {
       title: this.props.params.title
     };*/
     // const url = `/api/article/preview/?title=${encodeURIComponent(this.props.params.title)}`;
-    BookStore.getList().finally(() => {
+    BookStore.getList(param).finally(() => {
       this.setState({
         loading: false
       });
     });
   };
+
+  searchBook = (value) => {
+    let param = {
+      search: value
+    }
+    this.loadBook(param);
+  }
 
 
   render() {
@@ -71,15 +77,26 @@ class LibraryMangeSystem extends React.Component {
       <React.Fragment>
         <Layout className="lms-layout">
           <LMSHeader
-            onReturn={() => { }}
             onLogin={() => AuthStore.openLoginModal()}
             onLogout={() => AuthStore.logout()}
           />
           <Content style={{ padding: '0 50px', marginTop: 64 }}>
             <BorrowTable className="lms-borrow-card"/>
             <Card className="lms-book-card">
+              <Search 
+                placeholder="请输入你要找的书名"
+                onSearch={this.searchBook}
+                enterButton="搜索"
+                style={{
+                  maxWidth: '320px',
+                  marginBottom: '20px',
+                  marginRight: '10px'
+                }}
+              />
+              <Button type="primary" onClick={() => this.loadBook()}>
+                查看全部书籍
+              </Button>
               <LMSBookTable
-                onBorrow={() => { }}
                 onDetail={(id) => BookStore.openDetailModal(id)}
               />
             </Card>

@@ -84,7 +84,6 @@ class AuthStore {
     this.setLoading(true);
 
     return BaseProvider.get('/api/users/').then(({ data }) => {
-      console.log(data)
       this.update(data);
       this.setLoading(false);
 

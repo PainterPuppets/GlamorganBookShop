@@ -37,7 +37,6 @@ class BookDetailContainer extends React.Component {
     };*/
     // const url = `/api/article/preview/?title=${encodeURIComponent(this.props.params.title)}`;
     BookStore.getList().then(({ data }) => {
-      console.log(data);
       this.setState({
         loading: false,
         books: data.results

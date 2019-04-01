@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, Group
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAdminUser
+from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
@@ -13,6 +14,8 @@ from book.api.serializers import BookSerializer
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ('name',)
 
     # admin create book
     def create(self, request):

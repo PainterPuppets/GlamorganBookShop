@@ -7,10 +7,10 @@
  - django是一个用python写的热门web框架，适合搭建各种中小型网站。开发起来简单顺手，配合django-rest-framework可以快速搭建rest api服务器
  - 目录下的manage.py文件是管理django项目的入口
  - django的一些命令
- - python manage.py runserver ip:port // 用于打开服务器
- - python manage.py makemigrations // 根据代码生成migration文件
- - python manage.py migrate // 根据mogration文件去更改数据库结构
- - python manage.py createsuperuser // 创建超级管理员账号(super user)
+ - `python manage.py runserver ip:port` // 用于打开服务器
+ - `python manage.py makemigrations` // 根据代码生成migration文件
+ - `python manage.py migrate` // 根据mogration文件去更改数据库结构
+ - `python manage.py createsuperuser` // 创建超级管理员账号(super user)
 
 
 ### 关于react
@@ -32,5 +32,5 @@
  - congratulation! you can access 127.0.0.1:8000 
 
 ## TODO:
- - add give back action & frontend
+ - add search
  - romove duplicate code

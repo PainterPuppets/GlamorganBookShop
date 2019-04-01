@@ -24,7 +24,6 @@ class BorrowViewSet(viewsets.ModelViewSet):
 
         return Response(BorrowSerializer(queryset, many=True).data, status=status.HTTP_200_OK)
 
-    
     def create(self, request):
         user = request.user
         book_id = request.data.get('book_id', None)
@@ -42,10 +41,13 @@ class BorrowViewSet(viewsets.ModelViewSet):
         return Response(BorrowSerializer(borrow).data, status=status.HTTP_200_OK)
 
     @detail_route(methods=['POST'])
-    def giveup(self, request):
+    def giveback(self, request, *args, **kwargs):
         borrow = self.get_object()
-        borrow.statue = BorrowStatus.RETURNED
-        borrow.return_at = datetime.now()
+        if borrow.status is not BorrowStatus.BORROWING:
+          return Response({'detail': u'不能重复归还'}, status=status.HTTP_400_BAD_REQUEST)
+
+        borrow.status = BorrowStatus.GIVEBACKED
+        borrow.return_at = datetime.datetime.now()
         borrow.save()
         book = borrow.book
         book.current_count += 1

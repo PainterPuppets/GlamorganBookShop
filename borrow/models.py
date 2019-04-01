@@ -10,5 +10,5 @@ class Borrow(models.Model):
     user = models.ForeignKey(User)
     status = models.IntegerField('借阅状态', choices=BORROW_STATUS_CHOICES,
                                          default=BorrowStatus.BORROWING)
-    create_at = models.DateField(auto_now_add=True)
-    return_at = models.DateField(blank=True, null=True)
+    create_at = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+    return_at = models.DateTimeField(blank=True, null=True)

@@ -2,11 +2,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Table, Collapse, message } from 'antd';
-import BookStore from '../stores/BookStore'
-import BorrowStore from '../stores/BorrowStore'
-import AuthStore from '../stores/AuthStore'
+import BookStore from '../stores/BookStore';
+import BorrowStore from '../stores/BorrowStore';
+import AuthStore from '../stores/AuthStore';
+import { BORROW_STATUS, borrowStatus } from '../constants';
 
-const { Column, ColumnGroup } = Table;
+const { Column } = Table;
 const Panel = Collapse.Panel;
 
 @observer
@@ -14,6 +15,26 @@ class BorrowTable extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  onGiveBack = (borrowId) => {
+    BorrowStore.giveBackBook(borrowId).then(() => {
+      message.success('归还成功')
+    }).catch((err) => {
+      message.error(err.response.data.detail)
+    });
+  }
+
+  renderAction = (borrow) => {
+    if (borrow.status === BORROW_STATUS.GIVEBACKED) {
+      return null;
+    }
+    return (
+      <span onClick={() => this.onGiveBack(record.id)} className="clickable-text">
+        归还
+      </span>
+    )
+  }
+
   render() {
     const Header = (
       <span>
@@ -32,13 +53,20 @@ class BorrowTable extends React.Component {
 
     return (
       <Collapse className={this.props.className}>
-        <Panel header={`您一共借阅了 ${BorrowStore.borrowRecord.length} 本书，展开查看更多`}>
+        <Panel header={`您当前一共借阅了 ${BorrowStore.borrowingRecord.length} 本书，展开查看更多`}>
           <Table dataSource={BorrowStore.borrowRecord} loading={!BorrowStore.isReady} pagination={false}>
             <Column
               title="书名"
               key="name"
               render={(record) => (
-                <span>{record.book.name}</span>
+                <span>《{record.book.name}》</span>
+              )}
+            />
+            <Column
+              title="状态"
+              key="status"
+              render={(record) => (
+                <span>{borrowStatus[record.status].text}</span>
               )}
             />
             <Column
@@ -49,9 +77,16 @@ class BorrowTable extends React.Component {
               )}
             />
             <Column
+              title="归还时间"
+              key="return_at"
+              render={(record) => (
+                <span>{record.return_at ? new Date(record.return_at).toLocaleString() : '----'}</span>
+              )}
+            />
+            <Column
               title="操作"
               key="action"
-              render={record => (<span className="clickable-text">归还</span>)}
+              render={this.renderAction}
             />
           </Table>
         </Panel>

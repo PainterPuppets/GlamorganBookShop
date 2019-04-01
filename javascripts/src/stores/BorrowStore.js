@@ -1,5 +1,6 @@
 import { observable, action, computed } from 'mobx';
 import BaseProvider from '../utils/Provider';
+import { BORROW_STATUS } from '../constants';
 
 class BorrowStore {
   @observable initialize = false;
@@ -8,6 +9,10 @@ class BorrowStore {
 
   @observable borrowModalVisible = false;
 
+
+  @computed get borrowingRecord() {
+    return this.borrowRecord.filter(b => b.status === BORROW_STATUS.BORROWING);
+  }
 
   @computed get isReady() {
     return this.initialize && !this.loading
@@ -37,10 +42,8 @@ class BorrowStore {
   })
 }
 
-@action giveUpBook = (bookId) => {
-  return BaseProvider.post(`/api/borrow/giveup`, {
-    book_id: bookId
-  }).then((res) => {
+@action giveBackBook = (borrowId) => {
+  return BaseProvider.post(`/api/borrow/${borrowId}/giveback/`).then((res) => {
     this.updateData(res.data)
   })
 }

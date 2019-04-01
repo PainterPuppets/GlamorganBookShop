@@ -15,6 +15,7 @@ media
 celerybeat-schedule
 celerybeat.pid
 
+__pycache__
 # node
 node_modules
 jspm_packages

@@ -23,7 +23,7 @@ class LMSBookTable extends React.Component {
           dataIndex="name"
           key="name"
           render={(text, book) => (
-            <span className="clickable-text" onClick={() => this.props.onDetail(book.id)}>{text}</span>
+            <span className="clickable-text" onClick={() => this.props.onDetail(book.id)}>《{text}》</span>
           )}
         />
         <Column

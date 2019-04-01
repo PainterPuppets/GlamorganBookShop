@@ -30,3 +30,22 @@
  - `pip install -r requirements.txt` // install backend dependencies
  - `python manger.py runserver 127.0.0.1:8000` // satrt server
  - congratulation! you can access 127.0.0.1:8000 
+
+
+## 关于目录结构
+ - `book文件夹`:  存放和书籍相关的一些逻辑（创建书籍/获取书籍列表）
+ - `borrow文件夹`： 存放和借阅相关的一些逻辑（借阅书籍/归还书籍/获取借阅记录）
+ - `users文件夹`：存放和用户信息相关的一些逻辑（登录/登出）
+ - `config文件夹`： 存放和项目配置相关的一些代码，大部分为django自己生成的
+ - `javascript文件夹`： 前端react代码，存放了一些javascript文件
+ - `node_modules文件夹`： 前端依赖文件，主要是一些第三方库
+ - `static文件夹`： 一些静态资源的存储位置，比如书籍封面之类的会存放在这里
+ - `templates文件夹`： 只有一个html文件，这个html是网站的入口
+ - `.babelrc`: 一个用于将react转换为ie可执行代码的工具，可以无视
+ - `.gitignore`: git（版本控制软件）的一些配置，可以无视
+ - `db.sqlite3`: 项目中用到的数据库，存放各种数据
+ - `manage.py`： django的入口文件，用于管理后端服务器
+ - `package.json`： 前端的配置文件，内容主要是前端依赖的第三方库
+ - `README.md`: 介绍文件，可以无视
+ - `requirements.txt`: 后端的依赖列表
+ - `webpack.config.js`: 前端打包相关的配置，主要作用是将react源代码打包为一个小型文件

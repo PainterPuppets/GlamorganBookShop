@@ -2,7 +2,6 @@
 from rest_framework import routers
 from users.api.views import UserViewSet, GroupViewSet
 from book.api.views import BookViewSet
-from order.api.views import OrderViewSet
 from borrow.api.view import BorrowViewSet
 
 router = routers.DefaultRouter()

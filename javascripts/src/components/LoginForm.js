@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
 class NormalLoginForm extends React.Component {

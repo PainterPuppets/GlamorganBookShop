@@ -1,19 +1,17 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Typography } from 'antd';
 import { observer } from 'mobx-react';
 const { Title, Paragraph, Text } = Typography;
 
+@observer
 class BookInfo extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const book = this.props.book;
     return (
       <div className={this.props.className}>
         <Paragraph style={{ textAlign: 'center' }}>
-          <img src={book.image} style={{ width: '120px' }} />
+          <img src={book.image} style={{ width: '120px' }} alt=""/>
         </Paragraph>
         <Title style={{ textAlign: 'center' }} level={3}>《{book.name}》</Title>
         <Paragraph>

@@ -2,16 +2,13 @@ import React from 'react';
 import { Layout, Popover } from 'antd';
 import { observer } from 'mobx-react';
 import AuthStore from '../stores/AuthStore'
+import './styles.less'
+
 const { Header } = Layout;
 
-import './styles.scss'
 
 @observer
 class LMSHeader extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const renderUserBox = (
       <div className="userbox">

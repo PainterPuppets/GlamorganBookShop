@@ -9,9 +9,6 @@ const { Column } = Table;
 
 @observer
 class LMSBookTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

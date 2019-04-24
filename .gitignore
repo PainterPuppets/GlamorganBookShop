@@ -25,7 +25,6 @@ static/images/*
 templates/pages/base.html
 celerybeat-schedule.*
 
-javascripts/package.json
 
 # sass cache
 *.scssc

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { message, Button } from 'antd';
 import { observer } from 'mobx-react';
 import AuthStore from '../stores/AuthStore'
@@ -7,10 +7,6 @@ import BorrowStore from '../stores/BorrowStore'
 
 @observer
 class BorrowAction extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleBorrow = () => {
     if (!AuthStore.isAuthenticated) {
       message.error('请登录后再借阅')

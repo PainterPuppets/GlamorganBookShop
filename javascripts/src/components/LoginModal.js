@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Modal, message } from 'antd';
 import { observer } from 'mobx-react';
 import AuthStore from '../stores/AuthStore'
@@ -6,9 +6,6 @@ import LoginForm from './LoginForm';
 
 @observer
 class LoginModal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   handleLogin = (username, password) => {
     AuthStore.login(username, password).then(() => {

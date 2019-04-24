@@ -12,7 +12,7 @@ import BorrowTable from './components/BorrowTable'
 import LoginModal from './components/LoginModal'
 import BookDetailModal from './components/BookDetailModal'
 
-import './layout.scss'
+import './layout.less'
 
 const Search = Input.Search;
 const { Content } = Layout;

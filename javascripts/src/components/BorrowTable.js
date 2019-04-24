@@ -2,7 +2,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Table, Collapse, message } from 'antd';
-import BookStore from '../stores/BookStore';
 import BorrowStore from '../stores/BorrowStore';
 import AuthStore from '../stores/AuthStore';
 import { BORROW_STATUS, borrowStatus } from '../constants';
@@ -12,10 +11,6 @@ const Panel = Collapse.Panel;
 
 @observer
 class BorrowTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   onGiveBack = (borrowId) => {
     BorrowStore.giveBackBook(borrowId).then(() => {
       message.success('归还成功')

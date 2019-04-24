@@ -22,7 +22,7 @@ jspm_packages
 npm-debug.log*
 static/react/*
 static/images/*
-templates/pages/base.html
+templates/base.html
 celerybeat-schedule.*
 
 

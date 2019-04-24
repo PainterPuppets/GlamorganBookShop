@@ -27,7 +27,7 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP === 'true';
+const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
@@ -295,7 +295,13 @@ module.exports = function () {
       rules: [
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
-
+        {
+          loader:'webpack-ant-icon-loader',
+          enforce: 'pre',
+          include:[
+            path.resolve('node_modules/@ant-design/icons/lib/dist')
+          ]
+        },
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
         {

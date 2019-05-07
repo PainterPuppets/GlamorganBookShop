@@ -18,6 +18,7 @@ class UserSerializerForMe(serializers.ModelSerializer):
             'username',
             'email',
             'is_authenticated',
+            'is_superuser',
         )
 
 

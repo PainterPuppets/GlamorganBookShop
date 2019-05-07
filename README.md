@@ -3,6 +3,9 @@
 ## 关于这个项目
 本项目使用 django + react 框架写成
 
+## 使用daocloud部署
+
+
 ### 关于django
  - django是一个用python写的热门web框架，适合搭建各种中小型网站。开发起来简单顺手，配合django-rest-framework可以快速搭建rest api服务器
  - 目录下的manage.py文件是管理django项目的入口

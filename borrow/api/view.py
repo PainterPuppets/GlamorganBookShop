@@ -20,7 +20,6 @@ class BorrowViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         queryset = self.get_queryset().filter(user=request.user)
-        print queryset
 
         return Response(BorrowSerializer(queryset, many=True).data, status=status.HTTP_200_OK)
 

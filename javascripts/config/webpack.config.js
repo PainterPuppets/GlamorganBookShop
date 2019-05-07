@@ -23,6 +23,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
@@ -507,6 +508,12 @@ module.exports = function () {
     plugins: [
       // new BundleAnalyzerPlugin(),
       // Generates an `index.html` file with the <script> injected.
+      new CompressionWebpackPlugin({
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        threshold: 10240,
+        minRatio: 0.8
+      }),
       new HtmlWebpackPlugin(
         Object.assign(
           {},

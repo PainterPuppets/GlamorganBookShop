@@ -12,8 +12,6 @@ django-summernote
 avatars
 media
 *~
-celerybeat-schedule
-celerybeat.pid
 
 __pycache__
 # node
@@ -22,8 +20,6 @@ jspm_packages
 npm-debug.log*
 static/react/*
 static/images/*
-templates/base.html
-celerybeat-schedule.*
 
 
 # sass cache
@@ -31,12 +27,9 @@ celerybeat-schedule.*
 venv/
 *.css.map
 
-articles.csv
-
-/javascripts/raven.config.js
-
-*.css.map
-
 # add fake data
 fakedata/
+
+templates/*
+templates/base.html
 

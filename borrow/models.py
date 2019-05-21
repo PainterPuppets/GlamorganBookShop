@@ -12,3 +12,4 @@ class Borrow(models.Model):
                                          default=BorrowStatus.BORROWING)
     create_at = models.DateTimeField(blank=True, null=True, auto_now_add=True)
     return_at = models.DateTimeField(blank=True, null=True)
+    expire_at = models.DateTimeField(blank=True, null=True)

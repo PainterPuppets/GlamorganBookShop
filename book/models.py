@@ -15,6 +15,7 @@ class Book(models.Model):
     author = models.CharField(max_length=255)
     image = models.ImageField(upload_to='book/', blank=True, null=True)
     image_url = models.URLField(max_length=255, blank=True, null=True)
+    is_recommand = models.BooleanField(default=False)
 
     def can_borrow(self):
         return self.current_count > 0

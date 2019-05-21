@@ -1,7 +1,7 @@
 # coding: utf8
 from django.contrib.auth.models import User, Group
 
-from rest_framework.decorators import api_view, permission_classes, detail_route
+from rest_framework.decorators import api_view, permission_classes, detail_route, list_route
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import viewsets, status
@@ -36,8 +36,16 @@ class BorrowViewSet(viewsets.ModelViewSet):
         borrow = Borrow.objects.create(
             user=user,
             book=book,
+            expire_at=datetime.datetime.now() + datetime.timedelta(days=30)
         )
+
         return Response(BorrowSerializer(borrow).data, status=status.HTTP_200_OK)
+
+    @list_route(methods=['GET'])
+    def due(self, request):
+        borrows = self.get_queryset().filter(expire_at__lte=datetime.datetime.now() + datetime.timedelta(days=7), status=BorrowStatus.BORROWING)
+        return Response(BorrowSerializer(borrows, many=True).data, status=status.HTTP_200_OK)
+
 
     @detail_route(methods=['POST'])
     def giveback(self, request, *args, **kwargs):

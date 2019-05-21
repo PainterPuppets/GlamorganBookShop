@@ -109,3 +109,18 @@
 
   }
 }
+
+.book-card { 
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  box-shadow: 5px 5px 20px rgba(0,0,0,.2);
+  padding: 20px 10px;
+  width: 200px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  user-select: none;
+  &:hover, &:focus {
+    box-shadow: 3px 3px 10px rgba(0,0,0,.2);
+  }
+}

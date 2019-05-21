@@ -6,6 +6,7 @@ class BookStore {
   @observable initialize = false;
   @observable loading = false;
   @observable books = [];
+  @observable recommandBooks = [];
   @observable detailId = 0;
   @observable detailModalVisible = false;
 
@@ -24,6 +25,12 @@ class BookStore {
     }
 
     return this.books[index]
+  }
+
+  @action getRecommand(query) {
+    return BaseProvider.get(`/api/book/?is_recommand=true`).then((res) => {
+      this.recommandBooks = res.data.results;
+    })
   }
 
   @action getList(query) {

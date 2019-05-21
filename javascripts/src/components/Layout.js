@@ -79,7 +79,7 @@ class AppLayout extends Component {
             }
           </div>
         </Header>
-        <Content style={{ padding: '0 50px' }}>
+        <Content style={{ padding: '0 50px', overflow: 'scroll' }}>
           {this.props.children}
         </Content>
 

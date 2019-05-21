@@ -11,4 +11,4 @@ class BorrowSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Borrow
-        fields = ('id', 'book', 'user', 'status', 'create_at', 'return_at')
+        fields = ('id', 'book', 'user', 'status', 'create_at', 'return_at', 'expire_at')
